@@ -423,6 +423,7 @@ HRESULT VorbisWaveDecoder::SetStream(IStream *stream, LPWSTR url)
 		}
 	}
 	
+#if 0
 #ifndef _M_X64
 	if(Look_Replay_Gain)
 	{
@@ -444,6 +445,7 @@ HRESULT VorbisWaveDecoder::SetStream(IStream *stream, LPWSTR url)
 			vorbis_info_set_global_gain(ov_info(&InputFile, i), gain);
 		}
 	}
+#endif
 #endif
 #endif
 
@@ -585,6 +587,7 @@ EXPORT(HRESULT) V2Link(iTVPFunctionExporter *exporter)
 	TVPAddImportantLog(debug_str); 
 
 	tTJSVariant val;
+#if 0
 	if(TVPGetCommandLine(TJS_W("-vorbis_gain"), &val))
 	{
 		double db = (tTVReal)val;
@@ -612,6 +615,7 @@ EXPORT(HRESULT) V2Link(iTVPFunctionExporter *exporter)
 			TVPAddLog(TJS_W("wuvorbis: IEEE 32bit float output enabled."));
 		}
 	}
+#endif
 
 	Look_Replay_Gain = true; // whether to look replay gain information
 	Use_Album_Gain = false; // whether to use album gain, otherwise use track gain
@@ -779,8 +783,10 @@ extern "C" unsigned __int32 DetectCPU(void)
 //---------------------------------------------------------------------------
 extern "C" void ScaleOutput(float scale)
 {
+#if 0
 	scale_FLOOR1_fromdB_LOOKUP((float)scale) ;
 	scale_FROMdB2_LOOKUP((float)scale) ;
+#endif
 }
 //---------------------------------------------------------------------------
 
